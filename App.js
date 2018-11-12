@@ -4,7 +4,8 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 import UsernameInput from "./src/UsernameInput";
-import { store, persistor } from "./src/store";
+import { store, persistor } from "./src/store/store";
+import Layout from "./src/components/Layout/Layout";
 
 export default class App extends React.Component {
   renderLoading = () => (
@@ -17,7 +18,8 @@ export default class App extends React.Component {
       <Provider store={store}>
         <PersistGate persistor={persistor} loading={this.renderLoading()}>
           <View style={styles.container}>
-            <UsernameInput />
+            {/* <UsernameInput /> */}
+            <Layout />
           </View>
         </PersistGate>
       </Provider>
@@ -28,8 +30,8 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "lightblue",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "flex-start"
   }
 });
