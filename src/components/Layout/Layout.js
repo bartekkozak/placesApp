@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { connect } from "react-redux";
 import PlaceInput from "../PlaceInput/PlaceInput";
 import PlaceList from "../PlaceList/PlaceList";
@@ -11,6 +11,9 @@ import {
   selectPlace,
   deselectPlace
 } from "../../store/actions/index";
+import PushNotifications from "../PushNotifications/PushNotifications";
+
+// import { Constants, Notifications, Permissions } from "expo";
 
 class Layout extends Component {
   placeAddedHandler = placeName => {
@@ -70,6 +73,46 @@ class Layout extends Component {
     this.props.onDeselectPlace();
   };
 
+  // // TESTING NOTIFICATIONS
+
+  // onSubmit = e => {
+  //   // Keyboard.dismiss();
+
+  //   const localNotification = {
+  //     title: "done kurwa szwa",
+  //     body: "You have some tasks to complete"
+  //   };
+
+  //   const schedulingOptions = {
+  //     time: new Date().getTime() + Number(e.nativeEvent.text)
+  //   };
+
+  //   // Notifications show only when app is not active.
+  //   // (ie. another app being used or device's screen is locked)
+  //   Notifications.scheduleLocalNotificationAsync(
+  //     localNotification,
+  //     schedulingOptions
+  //   );
+  // };
+
+  // handleNotification = () => {
+  //   console.warn("ok! got your notif");
+  // };
+
+  // async componentDidMount() {
+  //   // We need to ask for Notification permissions for ios devices
+  //   let result = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+
+  //   if (Constants.isDevice && result.status === "granted") {
+  //     console.log("Notification permissions granted.");
+  //   }
+
+  //   // If we want to do something with the notification when the app
+  //   // is active, we need to listen to notification events and
+  //   // handle them in a callback
+  //   Notifications.addListener(this.handleNotification);
+  // }
+
   render() {
     return (
       <View style={styles.container}>
@@ -83,6 +126,17 @@ class Layout extends Component {
           onItemDeleted={this.placeDeletedHandler}
           onModalClosed={this.modalClosedHandler}
         />
+        <View style={styles.buttonContainer}>
+          <Button
+            title="GO TO AUTH"
+            onPress={() => this.props.navigation.navigate("Auth")}
+          />
+          {/* <TextInput
+            onSubmitEditing={this.onSubmit}
+            placeholder={"time in ms"}
+          /> */}
+          <PushNotifications />
+        </View>
       </View>
     );
   }
@@ -92,9 +146,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "lightblue",
-    alignItems: "center",
-    justifyContent: "flex-start"
+    backgroundColor: "lightblue"
+  },
+  buttonContainer: {
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "center"
   }
 });
 

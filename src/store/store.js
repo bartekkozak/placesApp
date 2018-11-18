@@ -5,10 +5,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from "redux-persist";
 import { combineReducers } from "redux";
 import placesReducer from "./reducers/places";
-import user from "./reducers/user";
 
 const rootReducer = combineReducers({
-  user: user,
   places: placesReducer
 });
 

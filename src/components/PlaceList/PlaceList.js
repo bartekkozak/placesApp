@@ -8,21 +8,27 @@ const PlaceList = props => {
   // ));
 
   return (
-    <FlatList
-      style={styles.listContainer}
-      data={props.places}
-      renderItem={info => (
-        <ListItem
-          placeName={info.item.name}
-          placeImage={info.item.image}
-          onItemPressed={() => props.onItemSelected(info.item.key)}
-        />
-      )}
-    />
+    <View style={styles.listWrapper}>
+      <FlatList
+        style={styles.listContainer}
+        data={props.places}
+        renderItem={info => (
+          <ListItem
+            placeName={info.item.name}
+            placeImage={info.item.image}
+            onItemPressed={() => props.onItemSelected(info.item.key)}
+          />
+        )}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  listWrapper: {
+    flexDirection: "row",
+    flexWrap: "wrap"
+  },
   listContainer: {
     width: "100%"
   }

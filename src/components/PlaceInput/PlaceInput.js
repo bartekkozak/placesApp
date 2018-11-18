@@ -48,7 +48,9 @@ const styles = StyleSheet.create({
   },
   placeInput: {
     width: "70%",
-    padding: 5
+    padding: 5,
+    borderBottomWidth: 2,
+    borderColor: "#1194F6"
   },
   placeButton: {
     width: "30%"
